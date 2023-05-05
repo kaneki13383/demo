@@ -20,10 +20,10 @@ class Admin
         if (DB::table('users')->where('token', $request->input('token'))->where('role', 1)->get()->first()) {
             return $next($request);
         } else {
-            return response(json_encode([
-                'message' => "Гостевой доступ запрещен",
-                'code' => 403,
-            ], JSON_UNESCAPED_UNICODE), 403);
+            return response()->json([
+                'message' => 'Гостевой доступ запрещен',
+                'code' => 403
+            ], json_encode(JSON_UNESCAPED_UNICODE, 403));
         }
     }
 }
