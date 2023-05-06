@@ -1,0 +1,124 @@
+/* Первый секшон */
+.section_first{
+    background-color: #F9F3EE;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 200px;
+}
+.section_first img{
+    width: 58%;
+}
+.section_first div p{
+    font-size: 16px;
+    color: #c5a374;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.2;
+    letter-spacing: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.section_first div h1{
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 600;
+    width: 70%;
+    margin-bottom: 35px;
+}
+.section_first div button{
+    background-color: #333333;
+    color: #cfcfcf;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 15px 40px;
+    border: none;
+    transition: 0.5s;
+}
+.section_first div button:hover{
+    cursor: pointer;
+    background-color: #525252;
+}
+
+@media screen and (max-width: 1054px) {
+    .section_first div h1{
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+    .section_first div p{
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+    .section_first div button{
+        padding: 10px 30px;
+        font-size: 12px;
+    }
+    .section_first img{
+        width: 70%;
+    }
+    .section_first{
+        padding: 0 100px;
+    }
+}
+@media screen and (max-width: 834px) {
+    .section_first div h1{
+        font-size: 17px;
+    }
+    .section_first div p{
+        font-size: 8px;
+    }
+    .section_first div button{
+        padding: 8px 20px;
+        font-size: 10px;
+    }
+    .section_first img{
+        width: 50%;
+    }
+    .section_first{
+        padding: 0 50px;
+    }
+}
+/* Первый секшон */
+.text{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-family: 'Montserrat', sans-serif;  
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    font-weight: 600;  
+}
+.text p:last-child{
+    text-align: right;
+    line-height: 15px;
+}
+@media screen and (max-width: 834px) {
+    .text{
+        font-size: 7px;
+    }
+}
+.line:before {
+    display: inline-block;
+    content: '';
+    width: 50px;
+    height: 1px;
+    background-color: #cccccc;
+    margin: 0 15px 5px 15px;
+}
+/* Второй секшон */
+.section_second{
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+}
+.section_second h2{
+    font-size: 40px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 100;
+    text-align: center;
+}
+/* Второй секшон */
