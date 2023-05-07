@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +20,49 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/profile', function () {
+    return view('profile');
+});
+
+
+
+// Регистрация и авторизация
+Route::post('/register', [UserController::class, 'create'])->name('registeration');
+Route::post('/login', [UserController::class, 'auth'])->name('login');
+
+// Все что связано с товарами
+Route::get('/show/products', [ProductController::class, 'show']);
+
+Route::group(
+    ['middleware' => 'user'],
+    function () {
+        // Регистрация и авторизация
+        Route::get('/logout', [UserController::class, 'logout']);
+        // Корзина
+        Route::post('/add/cart/{id}', [CartController::class, 'add']);
+        Route::post('/delete/cart/{id}', [CartController::class, 'delete']);
+        Route::post('/cart/all', [CartController::class, 'show']);
+        // Заказы
+        Route::post('/create/order', [OrderController::class, 'create']);
+        Route::post('/show/order', [OrderController::class, 'show']);
+    }
+);
+
+Route::group(
+    ['middleware' => 'admin'],
+    function () {
+        // Все что связано с товарами
+        Route::post('/create/product', [ProductController::class, 'create']);
+        Route::delete('/delete/product/{id}', [ProductController::class, 'delete']);
+        Route::post('/update/product/{id}', [ProductController::class, 'update']);
+    }
+);

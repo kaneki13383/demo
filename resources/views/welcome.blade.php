@@ -11,6 +11,10 @@
     <title>Главная</title>
 </head>
 
+@php
+use Illuminate\Support\Facades\Auth;
+@endphp
+
 <body>
     @include('header')
 

@@ -65,6 +65,9 @@ header nav ul {
   padding: 0;
   list-style: none;
 }
+header nav ul li a{
+    color: #333333;
+}
 header nav li {
   display: flex;
   flex-direction: row;
@@ -90,6 +93,9 @@ header nav li {
     }
     header{
         display: none;
+    }
+    .mobile_header nav ul li a{
+        color: #333333;
     }
     .mobile_header{
         position: relative;

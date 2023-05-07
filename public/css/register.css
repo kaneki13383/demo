@@ -1,0 +1,64 @@
+h1, p, a, input, input::placeholder, button{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 100;
+}
+.register h1{
+    font-weight: 100;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-size: 30px;
+}
+.register form{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    width: 50%;
+    margin-bottom: 5vh;
+}
+.register form input{
+    height: 50px;
+    padding-left: 10px;
+    font-size: 17px;
+    border: 1px solid #eeeeee;
+}
+.register form input::placeholder{
+    color: #999999;
+}
+.register form input:focus-visible {
+    outline-offset: -500px;
+    border-color: #999999;
+}
+.register form div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+.register form div a{
+    text-decoration: none;
+    color: #999999;
+    border-bottom: 1.5px dashed #999999;
+    padding-bottom: 5px;
+}
+.register form div button{
+    border: none;
+    font-size: 16px;
+    background-color: #000;
+    color: #999;
+    padding: 15px 40px;
+    transition: .5s;
+}
+.register form div button:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+@media screen and (max-width: 1630px){
+    .register form{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 834px){
+    .register form div{
+        flex-direction: column;
+    }
+}
