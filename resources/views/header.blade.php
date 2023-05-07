@@ -85,6 +85,23 @@
                     </g>
                 </svg>
             </li>
+            @auth
+            <li>
+                <a href="/profile" style="position: relative; z-index: 9999;">
+                    <p class="texth4">{{ Auth::guard('sanctum')->user()->name  }}</p>
+                </a>
+                @if(Auth::guard('sanctum')->user()->administrator)
+                <a href="/admin">
+                    <img class="icons1" src="{{ Auth::guard('sanctum')->user()->name  }}">
+                </a>
+                @else
+                <a href="/profile">
+                    <img class="icons1" src="">
+                </a>
+                @endif
+            </li>
+            @endauth
+            @guest
             <li>
                 <a href="/register">
                     <svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -92,6 +109,7 @@
                     </svg>
                 </a>
             </li>
+            @endguest
         </ul>
     </nav>
 </div>
