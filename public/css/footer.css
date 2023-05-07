@@ -24,6 +24,10 @@ footer .info div h5{
 footer .info div p{
     padding-bottom: 10px;
 }
+footer .info div p a{
+    text-decoration: none;
+    color: #000;
+}
 footer .info div:last-child p{
     color: #999999;
     padding-bottom: 40px;

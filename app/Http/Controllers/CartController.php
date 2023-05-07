@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -18,42 +19,33 @@ class CartController extends Controller
 
     public function add(Request $request, $id)
     {
-        $id_user = User::select('id')->where('token', $request->input('token'))->get()->first();
-
         $id_product = Product::where('id', $id)->get()->first();
 
-        $check_cart = Cart::where('id_user', $id_user->id)->where('id_product', $id_product->id)->get()->first();
+        $check_cart = Cart::where('id_user', Auth::user()->id)->where('id_product', $id_product->id)->get()->first();
 
         if ($id_product != null) {
             if (!$check_cart) {
-                Cart::insert([
-                    'id_user' => $id_user->id,
+                Cart::create([
+                    'id_user' => Auth::user()->id,
                     'id_product' => $id,
                     'summ' => $id_product->price
                 ]);
             } else {
                 $count = 1;
-                $cart = Cart::where('id_product', $id_product->id)->where('id_user', $id_user->id)->first();
+                $cart = Cart::where('id_product', $id_product->id)->where('id_user', Auth::user()->id)->first();
                 $price = Product::where('id', $id)->get()->first();
                 $summ = $cart->summ + $price->price;
                 $count += $cart->count;
 
-                Cart::where('id_product', $id_product->id)->where('id_user', $id_user->id)->update([
+                Cart::where('id_product', $id_product->id)->where('id_user', Auth::user()->id)->update([
                     'count' => $count,
                     'summ' => $summ
                 ]);
-                return response()->json([
-                    'message' => 'Товар добавлен!'
-                ]);
+                return back();
             }
-
-            return response()->json([
-                'message' => 'Товар в корзине!'
-            ]);
+            return back();
         } else {
-            return response()->json([
-                'message' => 'Товар не существует!'
-            ]);
+            return back();
         }
     }
 

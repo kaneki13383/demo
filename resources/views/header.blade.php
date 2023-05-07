@@ -7,7 +7,7 @@
             <a href="/" class="logo">FURNISTORE</a>
             <li>Главная</li>
             <li>О компании</li>
-            <li>Каталог</li>
+            <li><a href="/catalog">Каталог</a></li>
             <li>Доставка</li>
         </ul>
         <ul>
@@ -67,7 +67,7 @@
         <ul>
             <li>Главная</li>
             <li>О компании</li>
-            <li>Каталог</li>
+            <li><a href="/catalog">Каталог</a></li>
             <li>Доставка</li>
         </ul>
         <ul>

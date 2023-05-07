@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,15 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
+Route::get('/catalog', function () {
+    return view('catalog');
+});
+
+Route::get('/open_product/{id}', function ($id) {
+    $product = Product::find($id);
+    return view('open_product', compact('product'));
+});
+
 
 
 // Регистрация и авторизация
@@ -48,7 +58,7 @@ Route::group(
         // Регистрация и авторизация
         Route::get('/logout', [UserController::class, 'logout']);
         // Корзина
-        Route::post('/add/cart/{id}', [CartController::class, 'add']);
+        Route::get('/add/cart/{id}', [CartController::class, 'add']);
         Route::post('/delete/cart/{id}', [CartController::class, 'delete']);
         Route::post('/cart/all', [CartController::class, 'show']);
         // Заказы

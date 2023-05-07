@@ -24,8 +24,8 @@
             <div>
                 <button type="submit">Войти</button>
                 <a href="/register">Зарегистрироваться</a>
-                @if(isset($success) != false)
-                <p>{{$success}}</p>
+                @if(isset($error))
+                <p>{{$error}}</p>
                 @endif
             </div>
 

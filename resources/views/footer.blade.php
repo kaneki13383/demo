@@ -2,7 +2,7 @@
     <div class="info container">
         <div>
             <h5>Покупателям</h5>
-            <p>Личный кабинет</p>
+            <p><a @auth href="/profile" @endauth>Личный кабинет</a></p>
         </div>
         <div>
             <h5>Информация</h5>
@@ -16,7 +16,7 @@
         <div>
             <h5>Подписка на новости</h5>
             <p>Получите доступ к эксклюзивным скидкам</p>
-            <input type="email" name="" id="" placeholder="E-mail">
+            <input type="email" name="" id="" placeholder="E-mail" @auth value="{{Auth::guard('sanctum')->user()->name}}" @endauth>
         </div>
     </div>
     <div class="copyright">

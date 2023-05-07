@@ -36,7 +36,7 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password')
         ])) {
-            return redirect('login');
+            return redirect('login')->with('error', 'Не правильный пароль или почта!');
         }
         $user = Auth::guard('sanctum')->user();
         if ($user->ban) {
