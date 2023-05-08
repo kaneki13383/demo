@@ -49,30 +49,9 @@ class CartController extends Controller
         }
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
-        $id_user = User::select('id')->where('token', $request->input('token'))->get()->first();
-
-        $cart = Cart::where('id_user', $id_user->id)->where('id_product', $id)->first();
-
-        if ($cart->count == 1) {
-            Cart::where('id', $cart->id)->delete();
-        } else {
-            $id_product = Product::where('id', $id)->get()->first();
-            $cart = Cart::where('id_product', $id_product->id)->where('id_user', $id_user->id)->get()->first();
-            $price = Product::where('id', $id)->get()->first();
-
-            $count = $cart->count - 1;
-            $summ = $cart->summ - $price->price;
-
-            Cart::where('id', $cart->id)->update([
-                'count' => $count,
-                'summ' => $summ
-            ]);
-
-            return response()->json([
-                'message' => 'Товар удален из корзины!'
-            ]);
-        }
+        Cart::where('id', $id)->delete();
+        return back();
     }
 }

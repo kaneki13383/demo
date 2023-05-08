@@ -9,13 +9,13 @@ use App\Models\Order;
 use App\Models\ProductOrders;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function create(Request $request)
+    public function create()
     {
-        $user = User::where('token', $request->input('token'))->first();
-        $my_cart = Cart::where('id_user', $user->id)->get();
+        $my_cart = Cart::where('id_user', Auth::user()->id)->get();
 
         $order_price = 0;
 
@@ -24,11 +24,11 @@ class OrderController extends Controller
         }
 
         Order::create([
-            'id_user' => $user->id,
+            'id_user' => Auth::user()->id,
             'order_price' => $order_price
         ]);
 
-        $myorder = Order::select('id')->where('id_user', $user->id)->get()->last();
+        $myorder = Order::select('id')->where('id_user', Auth::user()->id)->get()->last();
 
         for ($i = 0; $i < count($my_cart); $i++) {
             ProductOrders::create([
@@ -38,7 +38,8 @@ class OrderController extends Controller
             ]);
         }
 
-        Cart::where('id_user', $user->id)->delete();
+        Cart::where('id_user', Auth::user()->id)->delete();
+        return view('cart');
     }
 
     public function show(Request $request)

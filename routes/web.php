@@ -4,7 +4,10 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Resources\CartResource;
+use App\Models\Cart;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +41,11 @@ Route::get('/catalog', function () {
     return view('catalog');
 });
 
+Route::get('/cart', function () {
+    $cart = Cart::all()->where('id_user', Auth::guard('sanctum')->id());
+    return view('cart', compact('cart'));
+});
+
 Route::get('/open_product/{id}', function ($id) {
     $product = Product::find($id);
     return view('open_product', compact('product'));
@@ -59,10 +67,10 @@ Route::group(
         Route::get('/logout', [UserController::class, 'logout']);
         // Корзина
         Route::get('/add/cart/{id}', [CartController::class, 'add']);
-        Route::post('/delete/cart/{id}', [CartController::class, 'delete']);
+        Route::get('/delete/cart/{id}', [CartController::class, 'delete']);
         Route::post('/cart/all', [CartController::class, 'show']);
         // Заказы
-        Route::post('/create/order', [OrderController::class, 'create']);
+        Route::get('/create/order', [OrderController::class, 'create']);
         Route::post('/show/order', [OrderController::class, 'show']);
     }
 );

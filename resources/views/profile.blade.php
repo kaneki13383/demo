@@ -16,7 +16,20 @@ use Illuminate\Support\Facades\Auth;
 
 <body>
     @include('header')
-    <a href="/logout">Выход</a>
+
+    <div class="container">
+        <h1>Профиль</h1>
+        <div>
+            <div>
+
+            </div>
+            <div>
+
+                <a href="/logout">Выход</a>
+            </div>
+        </div>
+
+    </div>
     @include('footer')
     <script src="../js/burger.js"></script>
 </body>
