@@ -52,6 +52,13 @@ h1, p, a, input, input::placeholder, button{
     opacity: 0.7;
     cursor: pointer;
 }
+.error{
+    background: #f2dede;
+    color: #a94442;
+    width: 300px;
+    padding: 15px;
+    margin-bottom: 5vh;
+}
 @media screen and (max-width: 1630px){
     .register form{
         width: 100%;

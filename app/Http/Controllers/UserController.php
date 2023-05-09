@@ -27,7 +27,7 @@ class UserController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
         Auth::login($user);
 
-        return redirect('/');
+        return redirect('/profile')->with('success', 'Вы успешно зарегистрировались!');
     }
 
     public function auth(Request $request)
@@ -36,7 +36,7 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password')
         ])) {
-            return redirect('/login')->with('error', 'Не правильный пароль или почта!');
+            return redirect('/login')->with('error', 'Не правильная почта или пароль!');
         }
         $user = Auth::guard('sanctum')->user();
         Auth::login($user);
@@ -45,7 +45,7 @@ class UserController extends Controller
         if ($user->role == 1) {
             return  redirect('/admin');
         }
-        return redirect('/');
+        return redirect('/profile')->with('success', 'Вы успешно авторизовались!');
 
 
         // $chek_email = User::where('email', $request->input('email'))->get()->first();

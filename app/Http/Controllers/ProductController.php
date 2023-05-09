@@ -9,17 +9,17 @@ class ProductController extends Controller
 {
     public function create(Request $request)
     {
-        $product = Product::create([
+        $img = $request->file('img');
+        $img->move(public_path('images'), $img->getClientOriginalName());
+        Product::create([
             'title' => $request->input('title'),
             'price' => $request->input('price'),
             'discription' => $request->input('discription'),
-            'img' => $request->input('img'),
+            'discription2' => $request->input('discription2'),
+            'img' => '/images/' . $img->getClientOriginalName(),
         ]);
 
-        return response()->json([
-            'message' => 'Товар добавлен!',
-            'data' => $product
-        ]);
+        return back();
     }
 
     public function show()
@@ -31,22 +31,34 @@ class ProductController extends Controller
     {
         Product::where('id', $id)->delete();
 
-        return response()->json([
-            'message' => 'Товар удален!'
-        ]);
+        return back();
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        Product::where('id', $id)->update([
-            'title' => $request->input('title'),
-            'price' => $request->input('price'),
-            'discription' => $request->input('discription'),
-            'img' => $request->input('img'),
-        ]);
+        $img = $request->file('img');
+        if ($img != null) {
+            $img->move(public_path('images'), $img->getClientOriginalName());
 
-        return response()->json([
-            'message' => 'Товар изменен!'
-        ]);
+
+            Product::where('id', $request->input('id'))->update([
+                'title' => $request->input('title'),
+                'price' => $request->input('price'),
+                'discription' => $request->input('discription'),
+                'discription2' => $request->input('discription2'),
+                'img' => '/images/' . $img->getClientOriginalName(),
+            ]);
+
+            return redirect('/admin');
+        } else {
+            Product::where('id', $request->input('id'))->update([
+                'title' => $request->input('title'),
+                'price' => $request->input('price'),
+                'discription' => $request->input('discription'),
+                'discription2' => $request->input('discription2'),
+            ]);
+
+            return redirect('/admin');
+        }
     }
 }

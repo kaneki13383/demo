@@ -1,0 +1,92 @@
+.add_product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add_product form{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    width: 50%;
+    margin-bottom: 5vh;
+}
+.add_product form input[type='file']{
+    resize: none;
+    display: flex;
+    padding: 10px;
+}
+.add_product form input, textarea{
+    height: 50px;
+    padding-left: 10px;
+    font-size: 17px;
+    border: 1px solid #eeeeee;
+    resize: vertical;
+}
+textarea{
+    height: 150px;
+}
+.add_product form input::placeholder, textarea::placeholder{
+    color: #999999;
+}
+.add_product form input:focus-visible, textarea:focus-visible {
+    outline-offset: -500px;
+    border-color: #999999;
+}
+.add_product form div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+.add_product form button{
+    border: none;
+    font-size: 16px;
+    background-color: #000;
+    color: #999;
+    padding: 15px 40px;
+    transition: .5s;
+}
+.add_product form button:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+h1{
+    font-weight: 100;
+    margin: 5vh 0;
+}
+a{
+    text-decoration: none;
+    color: #999999;
+}
+.all{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px;
+    padding-bottom: 10vh;
+}
+.all .card{
+    background-color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 370px;
+}
+.all .card img{
+    height: 450px;
+    width: 333px;
+}
+.all .card .card_footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+    padding-bottom: 5vh;
+    font-weight: 100;
+    font-family: 20px;
+}
+.all .card .card_footer p{
+    font-size: 16px;
+    font-weight: 100;
+    color: #7c7c7c;
+}

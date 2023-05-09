@@ -26,6 +26,9 @@ $orders = Order::all()->where('id_user', Auth::user()->id);
     <div class="container">
         <h1>Профиль</h1>
         <h2>Мои заказы</h2>
+        @if(session('success'))
+        <p class="success">{{session('success')}}</p>
+        @endif
         <div class="all">
             <div>
                 @if(count($orders) != 0)

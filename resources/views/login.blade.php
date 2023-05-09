@@ -16,6 +16,9 @@
 
     <div class="container register">
         <h1>Войти в аккаунт</h1>
+        @if(session('error'))
+        <p class="error">{{session('error')}}</p>
+        @endif
         <form action="{{ route('login') }}" method="post">
             @csrf
             <input type="email" name="email" placeholder="Введите E-mail">
@@ -24,9 +27,6 @@
             <div>
                 <button type="submit">Войти</button>
                 <a href="/register">Зарегистрироваться</a>
-                @if(session('error'))
-                <p>{{session('error')}}</p>
-                @endif
             </div>
 
         </form>

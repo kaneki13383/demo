@@ -77,9 +77,19 @@ Route::group(
     ['middleware' => 'admin'],
     function () {
         // Все что связано с товарами
-        Route::post('/create/product', [ProductController::class, 'create']);
-        Route::delete('/delete/product/{id}', [ProductController::class, 'delete']);
-        Route::post('/update/product/{id}', [ProductController::class, 'update']);
-        Route::get('/logout', [UserController::class, 'logout']);
+        Route::post('/create/product', [ProductController::class, 'create'])->name('create');
+        Route::get('/delete/product/{id}', [ProductController::class, 'delete']);
+        Route::post('/update/product', [ProductController::class, 'update'])->name('update');
+        Route::get('/admin/logout', [UserController::class, 'logout']);
+
+        Route::get('/admin', function () {
+            $products = Product::all();
+            return view('admin', compact('products'));
+        });
+
+        Route::get('/edit/{id}', function ($id) {
+            $product = Product::find($id);
+            return view('edit', compact('product'));
+        });
     }
 );
