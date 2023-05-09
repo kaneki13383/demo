@@ -33,25 +33,14 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/profile', function () {
-    return view('profile');
-});
-
 Route::get('/catalog', function () {
     return view('catalog');
-});
-
-Route::get('/cart', function () {
-    $cart = Cart::all()->where('id_user', Auth::guard('sanctum')->id());
-    return view('cart', compact('cart'));
 });
 
 Route::get('/open_product/{id}', function ($id) {
     $product = Product::find($id);
     return view('open_product', compact('product'));
 });
-
-
 
 // Регистрация и авторизация
 Route::post('/register', [UserController::class, 'create'])->name('registeration');
@@ -63,6 +52,15 @@ Route::get('/show/products', [ProductController::class, 'show']);
 Route::group(
     ['middleware' => 'user'],
     function () {
+
+        Route::get('/profile', function () {
+            return view('profile');
+        });
+
+        Route::get('/cart', function () {
+            $cart = Cart::all()->where('id_user', Auth::guard('sanctum')->id());
+            return view('cart', compact('cart'));
+        });
         // Регистрация и авторизация
         Route::get('/logout', [UserController::class, 'logout']);
         // Корзина
@@ -82,5 +80,6 @@ Route::group(
         Route::post('/create/product', [ProductController::class, 'create']);
         Route::delete('/delete/product/{id}', [ProductController::class, 'delete']);
         Route::post('/update/product/{id}', [ProductController::class, 'update']);
+        Route::get('/logout', [UserController::class, 'logout']);
     }
 );

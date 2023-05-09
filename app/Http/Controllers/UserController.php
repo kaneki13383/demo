@@ -36,18 +36,13 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password')
         ])) {
-            return redirect('login')->with('error', 'Не правильный пароль или почта!');
+            return redirect('/login')->with('error', 'Не правильный пароль или почта!');
         }
         $user = Auth::guard('sanctum')->user();
-        if ($user->ban) {
-            auth('sanctum')->user()->tokens()->delete();
-            Auth::logout();
-            return redirect('/ban');
-        }
         Auth::login($user);
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        if ($user->administrator == true) {
+        if ($user->role == 1) {
             return  redirect('/admin');
         }
         return redirect('/');

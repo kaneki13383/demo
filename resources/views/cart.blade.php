@@ -14,7 +14,12 @@
 @php
 use App\Models\Product;
 $price = 0;
-for ($i=0; $i < count($cart); $i++) { $price +=$cart[$i]->summ; } @endphp
+
+   for ($i=0; $i < count($cart); $i++) { 
+        $price +=$cart[$i]->summ; 
+    }
+
+@endphp
 
     <body>
         @include('header')

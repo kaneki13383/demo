@@ -39,7 +39,7 @@ class OrderController extends Controller
         }
 
         Cart::where('id_user', Auth::user()->id)->delete();
-        return view('cart');
+        return redirect('profile');
     }
 
     public function show(Request $request)

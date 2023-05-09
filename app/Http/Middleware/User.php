@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class User
@@ -17,13 +18,10 @@ class User
      */
     public function handle(Request $request, Closure $next)
     {
-        if (DB::table('users')->where('token', $request->input('token'))->get()->first()) {
+        if (Auth::user()->role == 0) {
             return $next($request);
         } else {
-            return response()->json([
-                'message' => 'Гостевой доступ запрещен',
-                'code' => 403
-            ], json_encode(JSON_UNESCAPED_UNICODE, 403));
+            return back();
         }
     }
 }

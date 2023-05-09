@@ -7,11 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/profile.css">
     <title>Профиль {{ Auth::guard('sanctum')->user()->name  }}</title>
 </head>
 
 @php
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+
+$orders = Order::all()->where('id_user', Auth::user()->id);
+
+
 @endphp
 
 <body>
@@ -19,18 +25,41 @@ use Illuminate\Support\Facades\Auth;
 
     <div class="container">
         <h1>Профиль</h1>
-        <div>
+        <h2>Мои заказы</h2>
+        <div class="all">
             <div>
-
+                @if(count($orders) != 0)
+                <table>
+                    <thead>
+                        <td>Дата офромления</td>
+                        <td>Номер заказа</td>
+                        <td>Сумма заказа</td>
+                    </thead>
+                    <tbody>
+                        @foreach($orders as $order)
+                        <tr>
+                            <td>{{$order->created_at->format('d.m.Y H:i:s')}}</td>
+                            <td>{{$order->id}}</td>
+                            <td>{{$order->order_price}} руб</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @else
+                <table>
+                    <h3>Вы еще не сделали ни одного заказа!</h3>
+                </table>
+                @endif
             </div>
             <div>
-
+                <p style="border-bottom: 1px solid; padding-bottom: 5px;">Мои заказы</p>
                 <a href="/logout">Выход</a>
             </div>
         </div>
-
     </div>
+
     @include('footer')
+
     <script src="../js/burger.js"></script>
 </body>
 
