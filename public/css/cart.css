@@ -19,7 +19,7 @@
 .cart .all_cart table tbody tr{
     border-bottom: 1px solid #999999;
 }
-.cart .all_cart table tbody tr td p{
+.cart .all_cart table tbody tr p{
     font-size: 17px;
 }
 .cart .all_cart table tbody tr td:nth-child(1){
@@ -31,6 +31,9 @@
 .cart .all_cart table tbody tr img{
     width: 100%;
 }
+/* .cart .all_cart table tbody tr td{
+    padding: 15px 0;
+} */
 .order{
     background: #f5f5f5;
     width: 500px;

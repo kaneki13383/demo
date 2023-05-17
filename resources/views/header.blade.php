@@ -71,7 +71,7 @@
             </svg>
             <nav>
                 <ul>
-                    <li>Главная</li>
+                    <li><a href="/">Главная</a></li>
                     <li>О компании</li>
                     <li><a href="/catalog">Каталог</a></li>
                     <li>Доставка</li>

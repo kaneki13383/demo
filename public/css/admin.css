@@ -24,6 +24,7 @@
 }
 textarea{
     height: 150px;
+    padding-top: 10px;
 }
 .add_product form input::placeholder, textarea::placeholder{
     color: #999999;

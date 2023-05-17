@@ -16,10 +16,11 @@ h1{
     flex-direction: column;
     align-items: center;
     width: 370px;
+    padding-top: 20px;
 }
 .catalog .all .card img{
-    height: 450px;
-    width: 333px;
+    height: 100%;
+    width: 80%;
 }
 .catalog .all .card .card_footer{
     display: flex;
