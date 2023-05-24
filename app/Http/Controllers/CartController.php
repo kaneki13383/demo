@@ -17,7 +17,7 @@ class CartController extends Controller
         return CartResource::collection(Cart::where('id_user', $user->id)->get());
     }
 
-    public function add(Request $request, $id)
+    public function add($id)
     {
         $id_product = Product::where('id', $id)->get()->first();
 
@@ -45,6 +45,25 @@ class CartController extends Controller
             }
             return back();
         } else {
+            return back();
+        }
+    }
+
+    public function minus($id)
+    {
+        $id_product = Product::where('id', $id)->get()->first();
+        $check_cart = Cart::where('id_user', Auth::user()->id)->where('id_product', $id)->get()->first();
+
+        if ($check_cart->count == 1) {
+            Cart::where('id_user', Auth::user()->id)->where('id_product', $id)->delete();
+            return back();
+        } else {
+            $count = $check_cart->count - 1;
+            $summ = $check_cart->summ - $id_product->price;
+            Cart::where('id_user', Auth::user()->id)->where('id_product', $id)->update([
+                'count' => $count,
+                'summ' => $summ
+            ]);
             return back();
         }
     }

@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
         <div>
             <p>Диваны</p>
             <h1>Покупайте наши божественные диваны</h1>
-            <button>К каталогу</button>
+            <a href="/catalog"><button>К каталогу</button></a>
         </div>
         <img src="/images/divan-2.png" alt="">
     </div>

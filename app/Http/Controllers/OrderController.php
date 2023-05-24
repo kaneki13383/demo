@@ -6,6 +6,7 @@ use App\Http\Resources\Order as ResourcesOrder;
 use App\Http\Resources\OrderRecource;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\ProductOrders;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,7 +21,16 @@ class OrderController extends Controller
         $order_price = 0;
 
         for ($i = 0; $i < count($my_cart); $i++) {
-            $order_price += $my_cart[$i]['summ'];
+            $product = Product::where('id', $my_cart[$i]['id_product'])->get()->first();
+            if ($my_cart[$i]['count'] <= $product->stok) {
+                $stok = $product->stok - $my_cart[$i]['count'];
+                $order_price += $my_cart[$i]['summ'];
+                Product::where('id', $my_cart[$i]['id_product'])->update([
+                    'stok' => $stok
+                ]);
+            } else {
+                return redirect('/cart');
+            }
         }
 
         Order::create([

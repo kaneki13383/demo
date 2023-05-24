@@ -65,6 +65,7 @@ Route::group(
         Route::get('/logout', [UserController::class, 'logout']);
         // Корзина
         Route::get('/add/cart/{id}', [CartController::class, 'add']);
+        Route::get('/minus/cart/{id}', [CartController::class, 'minus']);
         Route::get('/delete/cart/{id}', [CartController::class, 'delete']);
         Route::post('/cart/all', [CartController::class, 'show']);
         // Заказы

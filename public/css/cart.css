@@ -77,6 +77,22 @@
     margin-top: 10vh;
     margin-bottom: 29vh;
 }
+input[type="number"]{
+    width: 10vw;
+}
+.plus_minus{
+    margin-top: 1vh;
+}
+.plus_minus a{
+    border: 2px black solid;
+    padding: 0px 5px;
+    color: black;
+    transition: .5sч;
+}
+.plus_minus a:hover{
+    background: black;
+    color: white;
+}
 @media screen and (max-width: 1630px){
     .order{
         width: 300px;
@@ -101,6 +117,11 @@
 @media screen and (max-width: 834px){
     table{
         display: none;
+    }
+    .plus_minus{
+        margin-top: 0!important;
+        padding-bottom: 0px !important;
+        border-bottom: none !important;
     }
     .adaptive{
         display: flex;

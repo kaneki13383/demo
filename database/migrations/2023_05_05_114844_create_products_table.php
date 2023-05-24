@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('discription');
             $table->text('discription2');
             $table->string('img');
+            $table->integer('stok');
             $table->timestamps();
         });
     }

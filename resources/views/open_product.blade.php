@@ -23,10 +23,15 @@ use Illuminate\Support\Facades\Auth;
             <img src="{{$product->img}}" alt="">
             <div class="info_product">
                 <h1>{{$product->title}}</h1>
+                <p>В наличии: {{$product->stok}} шт.</p>
                 <p>{{$product->discription}}</p>
                 <h2>{{$product->price}} руб</h2>
                 @auth
+                @if($product->stok != 0)
                 <a href="/add/cart/{{$product->id}}">В корзину</a>
+                @else
+                <a href="#">Нет в наличии</a>
+                @endif
                 @endauth
                 @guest
                 <a href="/login">Войдите в аккаунт</a>

@@ -8,18 +8,17 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/cart.css">
-    <title>Корзина {{ Auth::guard('sanctum')->user()->name  }}</title>
+    <title>Корзина {{ Auth::guard('sanctum')->user()->name }}</title>
 </head>
 
 @php
 use App\Models\Product;
 $price = 0;
 
-   for ($i=0; $i < count($cart); $i++) { 
-        $price +=$cart[$i]->summ; 
+for ($i=0; $i < count($cart); $i++) { $price +=$cart[$i]->summ;
     }
 
-@endphp
+    @endphp
 
     <body>
         @include('header')
@@ -44,24 +43,36 @@ $price = 0;
                                     <p>{{$product->title}}</p>
                                 </td>
                                 <td>
-                                    <p>Кол-во: {{$products->count}} шт</p>
+                                    Кол-во: {{$products->count}} шт
+                                    <div class="plus_minus">
+                                        @if($product->stok == $products->count)
+                                        @else
+                                        <a href="/add/cart/{{$product->id}}">+</a>
+                                        @endif
+                                        <a href="/minus/cart/{{$product->id}}">-</a>
+                                    </div>
                                 </td>
                                 <td>
                                     <p>{{$products->summ}} руб</p>
                                 </td>
                                 <td>
                                     <a href="/delete/cart/{{$products->id}}">
-                                        <svg width="21px" height="21px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <svg width="21px" height="21px" viewBox="0 -0.5 21 21" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
 
                                             <title>close [#1511]</title>
                                             <desc>Created with Sketch.</desc>
                                             <defs>
 
                                             </defs>
-                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -240.000000)" fill="#000000">
+                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd">
+                                                <g id="Dribbble-Light-Preview"
+                                                    transform="translate(-419.000000, -240.000000)" fill="#000000">
                                                     <g id="icons" transform="translate(56.000000, 160.000000)">
-                                                        <polygon id="close-[#1511]" points="375.0183 90 384 98.554 382.48065 100 373.5 91.446 364.5183 100 363 98.554 371.98065 90 363 81.446 364.5183 80 373.5 88.554 382.48065 80 384 81.446">
+                                                        <polygon id="close-[#1511]"
+                                                            points="375.0183 90 384 98.554 382.48065 100 373.5 91.446 364.5183 100 363 98.554 371.98065 90 363 81.446 364.5183 80 373.5 88.554 382.48065 80 384 81.446">
 
                                                         </polygon>
                                                     </g>
@@ -85,10 +96,19 @@ $price = 0;
                                 <p>{{$product->title}}</p>
                             </div>
                             <div>
-                                <p>Кол-во: {{$products->count}}</p>
+                                <p>Кол-во: {{$products->count}} шт
+                                <div class="plus_minus">
+                                    @if($product->stok == $products->count)
+                                    @else
+                                    <a href="/add/cart/{{$product->id}}">+</a>
+                                    @endif
+                                    <a href="/minus/cart/{{$product->id}}">-</a>
+                                </div>
+                                </p>
                                 <p>{{$products->summ}} руб</p>
                                 <a href="/delete/cart/{{$products->id}}">
-                                    <svg width="21px" height="21px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <svg width="21px" height="21px" viewBox="0 -0.5 21 21" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
                                         <title>close [#1511]</title>
                                         <desc>Created with Sketch.</desc>
@@ -96,9 +116,11 @@ $price = 0;
 
                                         </defs>
                                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g id="Dribbble-Light-Preview" transform="translate(-419.000000, -240.000000)" fill="#000000">
+                                            <g id="Dribbble-Light-Preview"
+                                                transform="translate(-419.000000, -240.000000)" fill="#000000">
                                                 <g id="icons" transform="translate(56.000000, 160.000000)">
-                                                    <polygon id="close-[#1511]" points="375.0183 90 384 98.554 382.48065 100 373.5 91.446 364.5183 100 363 98.554 371.98065 90 363 81.446 364.5183 80 373.5 88.554 382.48065 80 384 81.446">
+                                                    <polygon id="close-[#1511]"
+                                                        points="375.0183 90 384 98.554 382.48065 100 373.5 91.446 364.5183 100 363 98.554 371.98065 90 363 81.446 364.5183 80 373.5 88.554 382.48065 80 384 81.446">
 
                                                     </polygon>
                                                 </g>
